@@ -1,9 +1,12 @@
+from re import X
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView,UpdateView,DeleteView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from plotly.offline import plot
+from plotly.graph_objs import Scatter
 from .models import Ride
 
 # Create your views here.
@@ -16,7 +19,17 @@ def about(request):
 @login_required
 def rides_index(request):
     rides = Ride.objects.filter(user=request.user)
-    return render(request, 'main_app/rides/index.html', {'rides':rides})
+    x_data = []
+    y_data = []
+    for ride in rides:
+        x_data.append(ride.date)
+        print(ride.date)
+        y_data.append(ride.distance)
+    plot_div = plot([Scatter(x = x_data, y = y_data,
+                                name='rides', mode='markers',
+                                opacity=0.8, marker_color='green')],
+                    output_type='div')
+    return render(request, 'main_app/rides/index.html', {'rides':rides, 'plot_div':plot_div}) 
 
 def rides_detail(request, ride_id):
     ride = Ride.objects.get(id=ride_id)

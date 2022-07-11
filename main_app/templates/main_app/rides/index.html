@@ -16,4 +16,8 @@
         </div>
     </a>
 </div>
-{% endfor %}{% endblock %}
+{% endfor %}
+{% autoescape off %}
+{{plot_div}}
+{% endautoescape %}
+{% endblock %}
