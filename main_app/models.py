@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from datetime import timedelta
 
+
 # Create your models here.
 class Ride(models.Model):
     route = models.CharField(max_length=100)
@@ -20,6 +21,9 @@ class Ride(models.Model):
     avg_speed = models.FloatField(verbose_name=('Average Speed'))
     description = models.TextField(max_length=300)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'ride_id': self.id})
     
     
     

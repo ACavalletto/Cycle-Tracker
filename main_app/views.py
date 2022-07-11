@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView,UpdateView,DeleteView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
@@ -43,3 +43,11 @@ class RideCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+class RideUpdate(LoginRequiredMixin, UpdateView):
+    model = Ride
+    fields = ['route', 'date', 'distance', 'elevation', 'duration', 'avg_speed', 'description']
+    
+class RideDelete(LoginRequiredMixin, DeleteView):
+    model = Ride
+    success_url = '/rides/'
