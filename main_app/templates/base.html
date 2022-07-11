@@ -23,6 +23,8 @@
           <ul class="right">
             <li><a href="/about">About</a></li>
             {% if user.is_authenticated %}
+            <li><a href="{% url 'ride_create' %}">Add Ride</a></li>
+            <li><a href="{% url 'rides' %}">View Rides</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li>
             {% else %}
             <li><a href="{% url 'login' %}">Login</a></li>

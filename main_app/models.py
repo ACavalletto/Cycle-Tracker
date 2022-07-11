@@ -19,6 +19,7 @@ class Ride(models.Model):
     )
     avg_speed = models.FloatField(verbose_name=('Average Speed'))
     description = models.TextField(max_length=300)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     
     
     
