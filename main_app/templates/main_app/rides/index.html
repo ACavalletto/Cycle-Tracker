@@ -1,20 +1,24 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Rides</h1>
+<h1 class ='light-blue-text text-darken-2 center-align'>Rides</h1>
 
 {% for ride in rides %}
-<div class="card">
-    <a href="{% url 'detail' ride.id %}">
-        <div class="card-content">
-            <span class="card-title">{{ ride.route }}</span>
-            <p>Date: {{ride.date}}</p>
-            <p>Distance: {{ride.distance}}</p>
-            <p>Elevation: {{ride.elevation}}</p>
-            <p>Duration: {{ride.duration}}</p>
-            <p>Average Speed: {{ride.avg_speed}}</p>
-            <p>Description: {{ride.description}}</p>
+<div class="row">
+    <div class="col s8 offset-s2">
+        <div class="card">
+            <a href="{% url 'detail' ride.id %}">
+                <div class="card-content blue-grey darken-1 ">
+                    <span class="card-title white-text">{{ ride.route }}</span>
+                    <p class="white-text">Date: {{ride.date}}</p>
+                    <p class="white-text">Distance: {{ride.distance}}</p>
+                    <p class="white-text">Elevation: {{ride.elevation}}</p>
+                    <p class="white-text">Duration: {{ride.duration}}</p>
+                    <p class="white-text">Average Speed: {{ride.avg_speed}}</p>
+                    <p class="white-text">Description: {{ride.description}}</p>
+                </div>
+            </a>
         </div>
-    </a>
+    </div>  
 </div>
 {% endfor %}
 {% endblock %}

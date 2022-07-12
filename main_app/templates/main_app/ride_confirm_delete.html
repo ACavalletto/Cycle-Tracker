@@ -1,15 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Delete Ride</h1>
+<h1 class="light-blue-text text-darken-2 center-align">Delete Ride</h1>
 
-<h4>
+<h4 class="light-blue-text text-darken-4 center-align">
     Are you sure you want to delete
     <span class="teal-text">{{object.name}}</span>?
 </h4>
-
-<form action="" method="POST">
+<br/>
+<form class= 'center-align' action="" method="POST">
     {% csrf_token %}
-    <input type="submit" value="Yes - Delete!" class="btn"/>
+    <input type="submit" value="Yes - Delete!" class="btn red accent-4"/>
+    <br/>
+    <br/>
     <a href="{% url 'detail' ride.id %}"> Cancel</a>
 </form>
 {% endblock %}
