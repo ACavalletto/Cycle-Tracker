@@ -1,0 +1,27 @@
+{% extends 'base.html' %}{% block content %}
+{%autoescape off %}
+<div class="row">
+    <div class="col s12">
+        {{plot_div}}
+    </div>
+</div>
+{% endautoescape %}
+<div class="row">
+    <div class ='col s5 offset-s1'>
+        <div class="card z-depth-2">
+            <div class="card-content">
+                <span class="card-title center-align">Distance Total:</span>
+                <h4 class="center-align">{{distance_sum}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class ='col s5 offset-s1'>
+        <div class="card z-depth-2">
+            <div class="card-content">
+                <span class="card-title center-align">Elevation Total:</span>
+                <h4 class="center-align">{{elevation_sum}}</h4>
+            </div>
+        </div>
+    </div> 
+</div>
+{% endblock %}

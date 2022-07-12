@@ -1,4 +1,4 @@
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,6 +10,9 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
+    <link
+    rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"
+    />
   </head>
   <body>
     <header class="navbar-fixed">
@@ -17,7 +20,7 @@
         <div class="nav-wrapper">
           <ul>
             <li>
-              <a href="/" class="left brand-logo">  CycleTracker</a>
+              <a href="/dashboard" class="left brand-logo">  CycleTracker</a>
             </li>
           </ul>
           <ul class="right">

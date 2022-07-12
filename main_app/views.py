@@ -19,17 +19,40 @@ def about(request):
 @login_required
 def rides_index(request):
     rides = Ride.objects.filter(user=request.user)
-    x_data = []
-    y_data = []
+    date_data = []
+    distance_data = []
     for ride in rides:
-        x_data.append(ride.date)
-        print(ride.date)
-        y_data.append(ride.distance)
-    plot_div = plot([Scatter(x = x_data, y = y_data,
+        date_data.append(ride.date)
+
+        distance_data.append(ride.distance)
+    plot_div = (plot([Scatter(x = date_data, y = distance_data,
                                 name='rides', mode='markers',
-                                opacity=0.8, marker_color='green')],
-                    output_type='div')
+                                opacity=0.8, marker_color='green', marker_size=10,
+                                marker_line = dict(color='black', width=1))],
+                    output_type='div'))
+
     return render(request, 'main_app/rides/index.html', {'rides':rides, 'plot_div':plot_div}) 
+
+@login_required
+def dashboard(request):
+    rides = Ride.objects.filter(user=request.user)
+    distance_sum = 0
+    elevation_sum = 0 
+    for ride in rides:
+        distance_sum += ride.distance
+        elevation_sum += ride.elevation
+    date_data = []
+    distance_data = []
+    for ride in rides:
+        date_data.append(ride.date)
+
+        distance_data.append(ride.distance)
+    plot_div = (plot([Scatter(x = date_data, y = distance_data,
+                                name='rides', mode='markers',
+                                opacity=0.8, marker_color='green', marker_size=10,
+                                marker_line = dict(color='black', width=1))],
+                    output_type='div'))
+    return render(request, 'main_app/dashboard.html', {'distance_sum':distance_sum, 'elevation_sum':elevation_sum, 'plot_div':plot_div})
 
 def rides_detail(request, ride_id):
     ride = Ride.objects.get(id=ride_id)
