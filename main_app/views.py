@@ -19,18 +19,7 @@ def about(request):
 @login_required
 def rides_index(request):
     rides = Ride.objects.filter(user=request.user)
-    date_data = []
-    distance_data = []
-    for ride in rides:
-        date_data.append(ride.date)
-        distance_data.append(ride.distance)
-    plot_div = (plot([Scatter(x = date_data, y = distance_data,
-                                name='rides', mode='markers',
-                                opacity=0.8, marker_color='green', marker_size=10,
-                                marker_line = dict(color='black', width=1))],
-                    output_type='div'))
-
-    return render(request, 'main_app/rides/index.html', {'rides':rides, 'plot_div':plot_div}) 
+    return render(request, 'main_app/rides/index.html', {'rides':rides}) 
 
 @login_required
 def dashboard(request):
