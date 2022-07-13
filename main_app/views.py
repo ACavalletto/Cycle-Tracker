@@ -23,7 +23,6 @@ def rides_index(request):
     distance_data = []
     for ride in rides:
         date_data.append(ride.date)
-
         distance_data.append(ride.distance)
     plot_div = (plot([Scatter(x = date_data, y = distance_data,
                                 name='rides', mode='markers',
