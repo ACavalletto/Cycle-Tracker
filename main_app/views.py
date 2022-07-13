@@ -74,7 +74,7 @@ def signup(request):
 class RideCreate(LoginRequiredMixin, CreateView):
     model = Ride
     fields = ['route', 'date', 'distance', 'elevation', 'duration', 'avg_speed', 'description']
-    success_url = '/'
+    success_url = '/dashboard'
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
