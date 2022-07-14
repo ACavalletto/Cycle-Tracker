@@ -1,5 +1,5 @@
 
-# DND-Character-Creator
+# Cycle Tracker
 
 ---
 
@@ -14,6 +14,7 @@ A web application that allows the user to keep track of their bike rides along w
 - Django
 - Plotly
 - Postgresql
+- Materialize
 - HTML
 - CSS
 
